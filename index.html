@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="pokedex.css" />
     <script src="pokedex.js"></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
     <title>Pokedex</title>
   </head>
   <body>
     <div id="main">
+      <div id="nav-button" onclick="expand()">
+        <svg id="nav-svg" fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" class="w-10 h-10 p-2 bg-white rounded-full" viewBox="0 0 24 24">
+          <path id="svg-path" d="M 4 4 L 20 4 M 4 12 L 20 12 M 4 20 L 20 20"></path>
+        </svg>
+      </div>
       <!-- On the left -->
       <div id="pokemon-list"></div>
       <!-- On the right -->
