@@ -1,4 +1,4 @@
-const pokemonCount = 151;
+const pokemonCount = 386;
 let pokedex = {};
 
 function index(num) {
