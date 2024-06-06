@@ -1,71 +1,80 @@
 const pokemonCount = 386;
 let pokedex = {};
 
-function index(num) {
-  if (num < 10) return "00" + num + "_";
-  if (num < 100) return "0" + num + "_";
-  return "" + num + "_";
+function paddedIndex(number) {
+  return number.toString().padStart(3, '0') + '_';
 }
 function processed(str) {
   str = str.replaceAll("\n", " ");
   str = str.replaceAll("\f", " ");
   return str;
 }
-function expand() {
-  let z = document.getElementById("pokemon-list").style.zIndex;
-  if (z == "-10") {
-    document.getElementById("pokemon-list").style.zIndex = "+10";
-    document.getElementById("svg-path").setAttribute("d", "M 4 4 L 20 20 M 4 20 L 20 4"); // set to cross
+function toggleMenu() {
+  const pokemonList = document.getElementById("pokemon-list");
+  const svgPath = document.getElementById("svg-path");
+
+  if (pokemonList.style.zIndex === "-10") {
+    pokemonList.style.zIndex = "10";
+    svgPath.setAttribute("d", "M 4 4 L 20 20 M 4 20 L 20 4");
   } else {
-    document.getElementById("pokemon-list").style.zIndex = "-10";
-    document.getElementById("svg-path").setAttribute("d", "M 4 4 L 20 4 M 4 12 L 20 12 M 4 20 L 20 20"); // set to hamburger
+    pokemonList.style.zIndex = "-10";
+    svgPath.setAttribute("d", "M 4 4 L 20 4 M 4 12 L 20 12 M 4 20 L 20 20");
   }
 }
+
 function updateInfo() {
-  let z = document.getElementById("pokemon-list").style.zIndex;
-  if (z == "10") {
-    document.getElementById("pokemon-list").style.zIndex = "-10";
-    document.getElementById("svg-path").setAttribute("d", "M 4 4 L 20 4 M 4 12 L 20 12 M 4 20 L 20 20"); // set to hamburger
+  const pokemonList = document.getElementById("pokemon-list");
+  const svgPath = document.getElementById("svg-path");
+
+  if (pokemonList.style.zIndex === "10") {
+    pokemonList.style.zIndex = "-10";
+    svgPath.setAttribute("d", "M 4 4 L 20 4 M 4 12 L 20 12 M 4 20 L 20 20");
   }
-  document.getElementById("pokemon-image").src = pokedex[this.id]["image"];
-  document.getElementById("pokemon-name").innerText = pokedex[this.id]["name"].toUpperCase();
-  document.getElementById("pokemon-desc").innerText = pokedex[this.id]["desc"].toUpperCase();
-  let typesDiv = document.getElementById("pokemon-types");
+
+  const pokemon = pokedex[this.id];
+  const pokemonImageElement = document.getElementById("pokemon-image");
+  const pokemonNameElement = document.getElementById("pokemon-name");
+  const pokemonDescElement = document.getElementById("pokemon-desc");
+
+  pokemonImageElement.src = pokemon.image;
+  pokemonNameElement.innerText = pokemon.name.toUpperCase();
+  pokemonDescElement.innerText = pokemon.desc.toUpperCase();
+
+  const typesDiv = document.getElementById("pokemon-types");
+
   while (typesDiv.firstChild) {
     typesDiv.firstChild.remove();
-    // console.log("type removed");
   }
-  let types = pokedex[this.id]["types"];
-  for (let i = 0; i < types.length; i++) {
-    let type = document.createElement("span");
-    type.innerText = types[i]["type"]["name"].toUpperCase();
-    type.classList.add("type-box");
-    type.classList.add(types[i]["type"]["name"]);
-    document.getElementById("pokemon-types").append(type);
-    // console.log("type added");
+
+  for (const type of pokemon.types) {
+    const typeElement = document.createElement("span");
+    typeElement.innerText = type.type.name.toUpperCase();
+    typeElement.classList.add("type-box");
+    typeElement.classList.add(type.type.name);
+    typesDiv.append(typeElement);
   }
 }
+
 
 /////////////////////////////////////////////
 ////    Computing done at window load    ////
 /////////////////////////////////////////////
+
 window.onload = async function () {
   for (let i = 1; i <= pokemonCount; i++) {
     await getPokemon(i);
     let pokemon = document.createElement("div");
     pokemon.id = i;
     pokemon.classList.add("pokemon-name");
-    pokemon.innerText = index(i) + pokedex[i]["name"].toUpperCase();
+    pokemon.innerText = paddedIndex(i) + pokedex[i]["name"].toUpperCase();
     pokemon.addEventListener("click", updateInfo);
     document.getElementById("pokemon-list").append(pokemon);
   }
-  // console.log(pokedex);
 };
 async function getPokemon(num) {
   let url = "https://pokeapi.co/api/v2/pokemon/" + num.toString();
   let res = await fetch(url);
   let pokemon = await res.json();
-  // console.log(pokemon);
 
   // let pokemonIcon = pokemon["sprites"]["front_default"];
   let pokemonName = pokemon["name"];
@@ -76,11 +85,9 @@ async function getPokemon(num) {
 
   res = await fetch(pokemon["species"]["url"]);
   let flavorText = await res.json();
-  // console.log(flavorText);
   let Desc1 = flavorText["flavor_text_entries"][9]["flavor_text"];
   let Desc2 = flavorText["flavor_text_entries"][10]["flavor_text"];
   let pokemonDesc = processed(Desc1) + " " + processed(Desc2);
-  // console.log(pokemonDesc);
 
   pokedex[num] = { name: pokemonName, types: pokemonTypes, desc: pokemonDesc, image: pokemonImage };
 }
