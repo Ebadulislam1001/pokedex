@@ -5,67 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="pokedex.css" />
+    <link rel="stylesheet" href="styles_900.css" />
+    <link rel="stylesheet" href="styles_600.css" />
     <script src="pokedex.js"></script>
     <title>Pokedex</title>
   </head>
   <body>
-    <div id="main">
-      <div id="nav-button" onclick="toggleMenu()">
-        <svg id="nav-svg" fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" class="w-10 h-10 p-2 bg-white rounded-full" viewBox="0 0 24 24">
-          <path id="svg-path" d="M 4 4 L 20 4 M 4 12 L 20 12 M 4 20 L 20 20"></path>
-        </svg>
-      </div>
+    <div id="nav-button" onclick="toggleMenu()">
+      <svg fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" viewBox="0 0 24 24">
+        <path id="svg-path" d="M 4 4 L 20 4 M 4 12 L 20 12 M 4 20 L 20 20"></path>
+      </svg>
+    </div>
 
-      <!-- On the left -->
-      <div id="pokemon-list"></div>
+    <!-- On the left -->
+    <div id="pokemon-list"></div>
 
-      <!-- On the right -->
-      <div id="pokemon-data">
-        <div id="upper-data">
-          <img id="pokemon-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="pokemon-sprite" />
-          <!-- <img id="pokemon-shiny" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png" alt="shiny-sprite" /> -->
-          <div id="right-data">
-            <h1 id="pokemon-name">BULBASAUR</h1>
-            <div id="pokemon-types">
-              <span class="type-box grass">GRASS</span>
-              <span class="type-box poison">POISON</span>
-            </div>
-            <div id="pokemon-abilities" style="width: 100%; display: flex; flex-direction: column; align-items: baseline; margin-left: 20px">
-              <h2 style="font-size: 1.2em; font-weight: bold">Abilities</h2>
-              <p class="ability-name">- Overgrow</p>
-              <p class="ability-name">- Chlorophyll</p>
-            </div>
+    <!-- On the right -->
+    <div id="pokemon-data">
+      <div id="upper-data">
+        <img id="pokemon-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="pokemon-sprite" onclick="toggleShiny()" />
+        <div id="right-data">
+          <h1 id="pokemon-name"></h1>
+          <div id="pokemon-types"></div>
+          <div id="pokemon-abilities">
+            <h2></h2>
+            <p></p>
+            <p></p>
           </div>
         </div>
-        <div id="lower-data">
-          <h2 style="font-size: 1.2em; font-weight: bold">Base Stats</h2>
-          <div class="base-stat-entry">
-            <div class="stat-entry"><span>HP </span><span id="HP-stat">45</span></div>
-            <div class="stat-bar" id="HP-bar"></div>
-          </div>
-          <div class="base-stat-entry">
-            <div class="stat-entry"><span>Ph Atk </span><span id="PA-stat">49</span></div>
-            <div class="stat-bar" id="PA-bar"></div>
-          </div>
-          <div class="base-stat-entry">
-            <div class="stat-entry"><span>Ph Def </span><span id="PD-stat">49</span></div>
-            <div class="stat-bar" id="PD-bar"></div>
-          </div>
-          <div class="base-stat-entry">
-            <div class="stat-entry"><span>Sp Atk </span><span id="SA-stat">65</span></div>
-            <div class="stat-bar" id="SA-bar"></div>
-          </div>
-          <div class="base-stat-entry">
-            <div class="stat-entry"><span>Sp Def </span><span id="SD-stat">65</span></div>
-            <div class="stat-bar" id="SD-bar"></div>
-          </div>
-          <div class="base-stat-entry">
-            <div class="stat-entry"><span>Speed </span><span id="SP-stat">45</span></div>
-            <div class="stat-bar" id="SP-bar"></div>
-          </div>
-          <div class="base-stat-entry">
-            <div class="stat-entry" style="font-weight: bold;"><span>Total </span><span id="BST-stat">318</span></div>
-          </div>
+      </div>
+      <div id="lower-data">
+        <h2>Base Stats</h2>
+        <div>
+          <div class="stat-val"><span>HP </span><span id="stat-0"></span></div>
+          <div class="stat-bar" id="bar-0"></div>
+        </div>
+        <div>
+          <div class="stat-val"><span>Ph Atk </span><span id="stat-1"></span></div>
+          <div class="stat-bar" id="bar-1"></div>
+        </div>
+        <div>
+          <div class="stat-val"><span>Ph Def </span><span id="stat-2"></span></div>
+          <div class="stat-bar" id="bar-2"></div>
+        </div>
+        <div>
+          <div class="stat-val"><span>Sp Atk </span><span id="stat-3"></span></div>
+          <div class="stat-bar" id="bar-3"></div>
+        </div>
+        <div>
+          <div class="stat-val"><span>Sp Def </span><span id="stat-4"></span></div>
+          <div class="stat-bar" id="bar-4"></div>
+        </div>
+        <div>
+          <div class="stat-val"><span>Speed </span><span id="stat-5"></span></div>
+          <div class="stat-bar" id="bar-5"></div>
+        </div>
+        <div>
+          <div class="stat-val" style="font-weight: bold"><span>Total </span><span id="BST"></span></div>
         </div>
       </div>
     </div>

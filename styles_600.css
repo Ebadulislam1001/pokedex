@@ -1,0 +1,96 @@
+/* styles for width 0-600 */
+/*  Mobile phone devices  */
+@media only screen and (max-width: 600px) {
+  #nav-button {
+    display: block;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+  }
+  #nav-button svg {
+    height: 40px;
+    width: 40px;
+    padding: 8px;
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 22px;
+  }
+  #pokemon-list {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -10;
+    width: 50%;
+  }
+  #pokemon-data {
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  #upper-data {
+    width: 80%;
+    max-width: 300px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #pokemon-image {
+    margin: 0px;
+    width: 160px;
+    height: 160px;
+    padding: 10px;
+    border-radius: 60px;
+  }
+  #right-data {
+    width: 160px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  #pokemon-types {
+    width: 160px;
+    margin: 0px;
+    padding: 0px;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .type-box {
+    height: 25px;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 5px;
+    font-size: smaller;
+    border: 2px solid black;
+    border-radius: 8px;
+    text-align: center;
+  }
+  #pokemon-abilities {
+    align-items: center;
+    margin: 0px;
+  }
+  #pokemon-abilities h2 {
+    font-size: 1.1em;
+  }
+  #pokemon-abilities p {
+    font-size: smaller;
+  }
+  #lower-data {
+    width: 80%;
+    max-width: 300px;
+    height: 280px;
+  }
+  #lower-data div {
+    width: 100%;
+  }
+  .stat-val {
+    margin-right: 10px;
+  }
+}

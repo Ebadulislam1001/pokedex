@@ -1,0 +1,33 @@
+/* styles for width 600-900 */
+/*   Tablet sized devices   */
+@media only screen and (max-width: 900px) {
+  #pokemon-list div {
+    font-size: medium;
+    border: 2px solid black;
+    border-radius: 8px;
+    margin: 5px;
+    padding: 5px;
+  }
+  #upper-data {
+    width: 450px;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  #pokemon-image {
+    width: 200px;
+    height: 200px;
+    padding: 0px;
+  }
+  #right-data {
+    width: 200px;
+    height: 200px;
+    padding: 0px;
+  }
+  #lower-data {
+    width: 450px;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 10px;
+  }
+}
